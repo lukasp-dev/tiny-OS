@@ -13,6 +13,11 @@ Each section (Bootloader, Kernel, Memory, etc.) will be organized as expandable 
 # 🖥️ Minimal x86 Bootloader
 
 A simple project experimenting with writing a bootloader in **x86 Assembly**, packaging it into a floppy disk image, and running it on QEMU.
+## relavant files: 
+- `~/Makefile`
+- `~/build/main.bin`
+- `~/build/main_floppy.img`
+- `~/src/main.asm`
 
 ---
 
@@ -97,7 +102,7 @@ main:
 
 ## 📐 x86 Segmented Addressing
 
-- 8086 had 16-bit registers → could only directly address 64KB.  
+- 8086 had 16-bit registers → could only directly address 64KB(2^16).  
 - Actual memory was 1MB → solution: **segment × 16 + offset**.
 
 Formula:
