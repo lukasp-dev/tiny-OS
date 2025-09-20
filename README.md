@@ -1,13 +1,22 @@
-# 🖥️ Minimal x86 Bootloader (OS Learning Repository)
+# 🧑‍💻 OS Learning Repository
 
-This repository documents my journey of **learning OS development from scratch**.  
-The first step is building a **bootloader** in x86 assembly, packaging it into a floppy disk image, and running it on QEMU.
+This repository documents my journey of **building an operating system from scratch**.  
+Each section (Bootloader, Kernel, Memory, etc.) will be organized as expandable notes.
+
+---
+
+## 📚 Sections
+
+<details>
+<summary>🔹 Bootloader (x86 Real Mode)</summary>
+
+# 🖥️ Minimal x86 Bootloader
+
+A simple project experimenting with writing a bootloader in **x86 Assembly**, packaging it into a floppy disk image, and running it on QEMU.
 
 ---
 
 ## 🚀 Setup
-
-Install required tools (macOS example):
 
 ```bash
 brew install nasm qemu make
@@ -32,8 +41,6 @@ Power On → POST (Power-On Self Test) → BIOS → Bootloader → Operating Sys
 ## 📂 Build & Run
 
 ### Makefile
-
-The build process is already automated with a `Makefile`:
 
 ```make
 ASM=nasm
@@ -61,10 +68,7 @@ qemu-system-i386 -fda build/main_floppy.img -drive format=raw
 
 ---
 
-## 📚 Learning Notes
-
-<details>
-<summary>📝 NASM Basics</summary>
+## 📝 NASM Basics
 
 - `$`: offset of the current line  
 - `$$`: offset of the beginning of the section  
@@ -88,13 +92,13 @@ main:
 .halt:
     jmp .halt
 ```
-</details>
 
-<details>
-<summary>📐 x86 Segmented Addressing</summary>
+---
+
+## 📐 x86 Segmented Addressing
 
 - 8086 had 16-bit registers → could only directly address 64KB.  
-- But actual memory was 1MB → solution: **segment × 16 + offset**.
+- Actual memory was 1MB → solution: **segment × 16 + offset**.
 
 Formula:
 ```nasm
@@ -105,20 +109,20 @@ Physical Address = Segment × 16 + Offset
 - Offset: IP, SP, or general-purpose register  
 
 Example: `CS=0x07C0, IP=0x0000` → Physical address `0x7C00`
-</details>
 
-<details>
-<summary>💾 Floppy Disk & .img</summary>
+---
+
+## 💾 Floppy Disk & .img
 
 - A floppy disk is a legacy portable storage medium (1.44MB capacity for 3.5").  
 - In OSDev, we use `.img` files to emulate an entire floppy disk.  
 - `truncate -s 1440k main_floppy.img` creates an empty 1.44MB floppy image.  
 - BIOS loads only the **first 512 bytes (boot sector)** into RAM at `0x7C00`.  
 - QEMU uses `.img` as if it were a real disk.
-</details>
 
-<details>
-<summary>🖥️ QEMU</summary>
+---
+
+## 🖥️ QEMU
 
 - QEMU = Quick Emulator, a program that simulates an entire PC.  
 - With `-fda main_floppy.img`, it treats the `.img` file as a floppy disk in drive A:.  
@@ -126,4 +130,5 @@ Example: `CS=0x07C0, IP=0x0000` → Physical address `0x7C00`
   - Reads first 512 bytes from `.img`
   - Copies them into `0x7C00`
   - Starts executing your assembly code there
+
 </details>
