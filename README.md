@@ -1,3 +1,28 @@
+# 🧑‍💻 My OS Learning Repository
+
+This repository documents my journey in **building an operating system from scratch**.  
+Starting from the basics (bootloader), moving towards protected mode, kernel development, memory management, and beyond.
+
+---
+
+## 📂 Project Roadmap
+
+- [ ] Bootloader (x86, Real Mode, 512-byte sector)
+- [ ] Entering Protected Mode (32-bit)
+- [ ] Kernel basics (C + Assembly integration)
+- [ ] Screen & I/O drivers
+- [ ] Memory Management
+- [ ] Multitasking
+- [ ] File System
+- [ ] User Programs
+
+---
+
+## 📚 Learning Notes by Section
+
+<details>
+<summary>🔹 Bootloader (x86 Real Mode)</summary>
+
 ```markdown
 # 🖥️ Minimal x86 Bootloader
 
@@ -121,3 +146,4 @@ segment : [ base + index * scale + displacement ]
 The segment (×16) gives the 64KB window start, and the offset gives the position within that window.
 </details>
 ```
+</details>
